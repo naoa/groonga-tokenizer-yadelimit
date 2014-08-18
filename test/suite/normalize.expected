@@ -1,0 +1,4 @@
+register tokenizers/yadelimit
+[[0,0.0,0.0],true]
+tokenize TokenYaDelimitCaret "AbCDＤ" NormalizerAuto
+[[0,0.0,0.0],[{"value":"abcdd","position":0}]]
