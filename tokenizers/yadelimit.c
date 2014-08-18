@@ -61,11 +61,11 @@ typedef struct {
   grn_tokenizer_token token;
   grn_tokenizer_query *query;
   grn_bool have_tokenized_delimiter;
-} grn_ya_delimited_tokenizer;
+} grn_yadelimit_tokenizer;
 
 
 static grn_obj *
-delimited_init(grn_ctx *ctx, int nargs, grn_obj **args, grn_user_data *user_data,
+yadelimit_init(grn_ctx *ctx, int nargs, grn_obj **args, grn_user_data *user_data,
                const unsigned short *delimiter, unsigned int delimiter_len,
                grn_bool delimit_punct)
 {
@@ -73,17 +73,17 @@ delimited_init(grn_ctx *ctx, int nargs, grn_obj **args, grn_user_data *user_data
   unsigned int normalize_flags = 0;
   const char *normalized;
   unsigned int normalized_length_in_bytes;
-  grn_ya_delimited_tokenizer *tokenizer;
+  grn_yadelimit_tokenizer *tokenizer;
 
   query = grn_tokenizer_query_open(ctx, nargs, args, normalize_flags);
   if (!query) {
     return NULL;
   }
 
-  if (!(tokenizer = GRN_PLUGIN_MALLOC(ctx,sizeof(grn_ya_delimited_tokenizer)))) {
+  if (!(tokenizer = GRN_PLUGIN_MALLOC(ctx,sizeof(grn_yadelimit_tokenizer)))) {
     GRN_PLUGIN_ERROR(ctx,GRN_NO_MEMORY_AVAILABLE,
                      "[tokenizer][yadelimit] "
-                     "memory allocation to grn_ya_delimited_tokenizer failed");
+                     "memory allocation to grn_yadelimit_tokenizer failed");
     grn_tokenizer_query_close(ctx, query);
     return NULL;
   }
@@ -110,10 +110,10 @@ delimited_init(grn_ctx *ctx, int nargs, grn_obj **args, grn_user_data *user_data
 }
 
 static grn_obj *
-delimited_next(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj **args,
+yadelimit_next(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj **args,
                grn_user_data *user_data)
 {
-  grn_ya_delimited_tokenizer *tokenizer = user_data->ptr;
+  grn_yadelimit_tokenizer *tokenizer = user_data->ptr;
 
   if (tokenizer->have_tokenized_delimiter) {
     unsigned int rest_length;
@@ -173,10 +173,10 @@ delimited_next(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj **args,
 }
 
 static grn_obj *
-delimited_fin(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj **args,
+yadelimit_fin(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj **args,
               grn_user_data *user_data)
 {
-  grn_ya_delimited_tokenizer *tokenizer = user_data->ptr;
+  grn_yadelimit_tokenizer *tokenizer = user_data->ptr;
   if (!tokenizer) {
     return NULL;
   }
@@ -187,42 +187,42 @@ delimited_fin(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj **args,
 }
 
 static grn_obj *
-delimit_caret_init(grn_ctx *ctx, int nargs, grn_obj **args,
-                   grn_user_data *user_data)
+yadelimit_caret_init(grn_ctx *ctx, int nargs, grn_obj **args,
+                     grn_user_data *user_data)
 {
   static const unsigned short delimiter[1] = {'^'};
-  return delimited_init(ctx, nargs, args, user_data, delimiter, 1, 0);
+  return yadelimit_init(ctx, nargs, args, user_data, delimiter, 1, 0);
 }
 
 static grn_obj *
-delimit_colon_init(grn_ctx *ctx, int nargs, grn_obj **args,
-                   grn_user_data *user_data)
+yadelimit_colon_init(grn_ctx *ctx, int nargs, grn_obj **args,
+                     grn_user_data *user_data)
 {
   static const unsigned short delimiter[1] = {':'};
-  return delimited_init(ctx, nargs, args, user_data, delimiter, 1, 0);
+  return yadelimit_init(ctx, nargs, args, user_data, delimiter, 1, 0);
 }
 
 static grn_obj *
-delimit_semicolon_init(grn_ctx *ctx, int nargs, grn_obj **args,
-                       grn_user_data *user_data)
+yadelimit_semicolon_init(grn_ctx *ctx, int nargs, grn_obj **args,
+                         grn_user_data *user_data)
 {
   static const unsigned short delimiter[1] = {';'};
-  return delimited_init(ctx, nargs, args, user_data, delimiter, 1, 0);
+  return yadelimit_init(ctx, nargs, args, user_data, delimiter, 1, 0);
 }
 
 static grn_obj *
-delimit_punct_init(grn_ctx *ctx, int nargs, grn_obj **args,
-                   grn_user_data *user_data)
+yadelimit_punct_init(grn_ctx *ctx, int nargs, grn_obj **args,
+                     grn_user_data *user_data)
 {
-  return delimited_init(ctx, nargs, args, user_data, NULL, 0, GRN_TRUE);
+  return yadelimit_init(ctx, nargs, args, user_data, NULL, 0, GRN_TRUE);
 }
 
 static grn_obj *
-delimit_punct_with_blank_init(grn_ctx *ctx, int nargs, grn_obj **args,
-                              grn_user_data *user_data)
+yadelimit_punct_with_blank_init(grn_ctx *ctx, int nargs, grn_obj **args,
+                                grn_user_data *user_data)
 {
   static const unsigned short delimiter[1] = {' '};
-  return delimited_init(ctx, nargs, args, user_data, delimiter, 1, GRN_TRUE);
+  return yadelimit_init(ctx, nargs, args, user_data, delimiter, 1, GRN_TRUE);
 }
 
 grn_rc
@@ -237,15 +237,15 @@ GRN_PLUGIN_REGISTER(grn_ctx *ctx)
   grn_rc rc;
 
   rc = grn_tokenizer_register(ctx, "TokenYaDelimitCaret", -1,
-                              delimit_caret_init, delimited_next, delimited_fin);
+                              yadelimit_caret_init, yadelimit_next, yadelimit_fin);
   rc = grn_tokenizer_register(ctx, "TokenYaDelimitColon", -1,
-                              delimit_colon_init, delimited_next, delimited_fin);
+                              yadelimit_colon_init, yadelimit_next, yadelimit_fin);
   rc = grn_tokenizer_register(ctx, "TokenYaDelimitSemicolon", -1,
-                              delimit_semicolon_init, delimited_next, delimited_fin);
+                              yadelimit_semicolon_init, yadelimit_next, yadelimit_fin);
   rc = grn_tokenizer_register(ctx, "TokenYaDelimitPunct", -1,
-                              delimit_punct_init, delimited_next, delimited_fin);
+                              yadelimit_punct_init, yadelimit_next, yadelimit_fin);
   rc = grn_tokenizer_register(ctx, "TokenYaDelimitPunctWithBlank", -1,
-                              delimit_punct_with_blank_init, delimited_next, delimited_fin);
+                              yadelimit_punct_with_blank_init, yadelimit_next, yadelimit_fin);
 
   return rc;
 }
