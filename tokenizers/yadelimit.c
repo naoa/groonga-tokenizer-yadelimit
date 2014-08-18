@@ -53,14 +53,14 @@
 #endif
 
 typedef struct {
+  grn_tokenizer_token token;
+  grn_tokenizer_query *query;
+  const unsigned char *next;
+  const unsigned char *end;
+  grn_bool have_tokenized_delimiter;
   const unsigned short *delimiter;
   unsigned int delimiter_len;
   grn_bool delimit_punct;
-  const unsigned char *next;
-  const unsigned char *end;
-  grn_tokenizer_token token;
-  grn_tokenizer_query *query;
-  grn_bool have_tokenized_delimiter;
 } grn_yadelimit_tokenizer;
 
 
