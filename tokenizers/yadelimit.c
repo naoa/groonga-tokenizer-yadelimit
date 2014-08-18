@@ -82,8 +82,8 @@ delimited_init(grn_ctx *ctx, int nargs, grn_obj **args, grn_user_data *user_data
 
   if (!(tokenizer = GRN_PLUGIN_MALLOC(ctx,sizeof(grn_ya_delimited_tokenizer)))) {
     GRN_PLUGIN_ERROR(ctx,GRN_NO_MEMORY_AVAILABLE,
-        "[tokenizer][yadelimit] "
-        "memory allocation to grn_ya_delimited_tokenizer failed");
+                     "[tokenizer][yadelimit] "
+                     "memory allocation to grn_ya_delimited_tokenizer failed");
     grn_tokenizer_query_close(ctx, query);
     return NULL;
   }
