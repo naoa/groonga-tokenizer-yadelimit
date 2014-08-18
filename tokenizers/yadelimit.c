@@ -88,7 +88,13 @@ yadelimit_init(grn_ctx *ctx, int nargs, grn_obj **args, grn_user_data *user_data
     return NULL;
   }
   user_data->ptr = tokenizer;
+  grn_tokenizer_token_init(ctx, &(tokenizer->token));
   tokenizer->query = query;
+  grn_string_get_normalized(ctx, tokenizer->query->normalized_query,
+                            &normalized, &normalized_length_in_bytes,
+                            NULL);
+  tokenizer->next = (const unsigned char *)normalized;
+  tokenizer->end = tokenizer->next + normalized_length_in_bytes;
 
   tokenizer->have_tokenized_delimiter =
     grn_tokenizer_have_tokenized_delimiter(ctx,
@@ -98,13 +104,6 @@ yadelimit_init(grn_ctx *ctx, int nargs, grn_obj **args, grn_user_data *user_data
   tokenizer->delimiter = delimiter;
   tokenizer->delimiter_len = delimiter_len;
   tokenizer->delimit_punct = delimit_punct;
-  grn_string_get_normalized(ctx, tokenizer->query->normalized_query,
-                            &normalized, &normalized_length_in_bytes,
-                            NULL);
-  tokenizer->next = (const unsigned char *)normalized;
-  tokenizer->end = tokenizer->next + normalized_length_in_bytes;
-
-  grn_tokenizer_token_init(ctx, &(tokenizer->token));
 
   return NULL;
 }
