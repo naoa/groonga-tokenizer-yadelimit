@@ -1,0 +1,3 @@
+register tokenizers/yadelimit
+
+tokenize TokenYaDelimitPunct "a iu. eo, kaki@kuke.com"

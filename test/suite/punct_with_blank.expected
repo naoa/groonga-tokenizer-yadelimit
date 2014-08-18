@@ -1,0 +1,36 @@
+register tokenizers/yadelimit
+[[0,0.0,0.0],true]
+tokenize TokenYaDelimitPunctWithBlank "a iu. eo, kaki@kuke.com"
+[
+  [
+    0,
+    0.0,
+    0.0
+  ],
+  [
+    {
+      "value": "a",
+      "position": 0
+    },
+    {
+      "value": "iu",
+      "position": 1
+    },
+    {
+      "value": "eo",
+      "position": 2
+    },
+    {
+      "value": "kaki",
+      "position": 3
+    },
+    {
+      "value": "kuke",
+      "position": 4
+    },
+    {
+      "value": "com",
+      "position": 5
+    }
+  ]
+]

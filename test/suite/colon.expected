@@ -1,0 +1,20 @@
+register tokenizers/yadelimit
+[[0,0.0,0.0],true]
+tokenize TokenYaDelimitColon "a iu. eo: kaki@kuke.com"
+[
+  [
+    0,
+    0.0,
+    0.0
+  ],
+  [
+    {
+      "value": "a iu. eo",
+      "position": 0
+    },
+    {
+      "value": " kaki@kuke.com",
+      "position": 1
+    }
+  ]
+]

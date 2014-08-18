@@ -1,0 +1,3 @@
+register tokenizers/yadelimit
+
+tokenize TokenYaDelimitPunctWithBlank "a.B￾cDe 1￾23" NormalizerAuto ENABLE_TOKENIZED_DELIMITER

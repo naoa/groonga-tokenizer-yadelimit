@@ -1,0 +1,5 @@
+plugin_name=tokenizers/yadelimit
+
+Name: groonga-tokenizer-yadelimit
+Description: Yet another delimit tokenizer plugin for Groonga
+Version: @VERSION@
