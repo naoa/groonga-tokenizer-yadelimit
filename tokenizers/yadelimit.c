@@ -140,7 +140,7 @@ yadelimit_next(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj **args,
         tokenizer->next = (unsigned char *)string_end;
         break;
       }
-      if (tokenizer->delimit_punct == GRN_TRUE){
+      if (tokenizer->delimit_punct){
         if(ispunct(*token_cursor)){
           tokenizer->next = token_cursor + char_length;
           break;
