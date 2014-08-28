@@ -168,8 +168,8 @@ Mroonga:
     mysql> CREATE TABLE `Diaries` (
         -> id INT NOT NULL,
         -> body TEXT NOT NULL,
-        -> PRIMARY KEY id(id) USING HASH,
-        -> FULLTEXT INDEX body(body) COMMENT 'parser "TokenYaDelimitPunctWithBlank"'
+        -> PRIMARY KEY (id) USING HASH,
+        -> FULLTEXT INDEX (body) COMMENT 'parser "TokenYaDelimitPunctWithBlank"'
         -> ) ENGINE=mroonga DEFAULT CHARSET=utf8;
 
 Rroonga:
