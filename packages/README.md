@@ -9,7 +9,7 @@ yum install -y groonga-devel autoconf automake libtool wget tar gcc-c++ make mec
 
 cd /usr/local/src/groonga-tokenizer-yadelimit
 make clean
-rm -rf Makefile.in aclocal.m4 autom4te.cache config.guess config.h.in config.sub configure depcomp install-sh ltmain.sh m4 missing groonga-tokenizer-yadelimit.pc packages/rpm/centos/groonga-tokenizer-yadelimit.spec packages/rpm/fedora/groonga-tokenizer-yadelimit.spec Makefile config.log config.h libtool stamp-h1 packages/Makefile packages/Makefile.in packages/apt/Makefile packages/apt/Makefile.in packages/rpm/Makefile packages/rpm/Makefile.in  packages/rpm/centos/Makefile packages/rpm/centos/Makefile.in packages/rpm/fedora/Makefile packages/rpm/fedora/Makefile.in packages/source/Makefile packages/source/Makefile.in  packages/yum/Makefile packages/yum/Makefile.in test/Makefile.in test/Makefile tokenizers/Makefile tokenizers/Makefile.in  tokenizers/.deps/ tokenizers/.libs/ config.status
+sh clean.sh
 sh autogen.sh
 ./configure && make
 
@@ -49,6 +49,7 @@ mv ~/rpmbuild/RPMS/x86_64/groonga-tokenizer-yadelimit-1.0.0-1.fc20.x86_64.rpm /u
 #Debian(wheezy)
 
 ```
+docker run -v /usr/local/src:/usr/local/src -i -t naoa/groonga-build-debian-wheezy /bin/bash
 docker run -v /usr/local/src:/usr/local/src -i -t debian:wheezy /bin/bash
 
 echo "deb http://packages.groonga.org/debian/ wheezy main" >> /etc/apt/sources.list.d/groonga.list
@@ -60,7 +61,8 @@ apt-get update
 apt-get install -y groonga libgroonga-dev wget tar build-essential zlib1g-dev liblzo2-dev libmsgpack-dev libzmq-dev libevent-dev libmecab-dev autoconf automake libtool lsb-release aptitude devscripts
 
 cd /usr/local/src/groonga-tokenizer-yadelimit
-make clean                                                                                                             rm -rf Makefile.in aclocal.m4 autom4te.cache config.guess config.h.in config.sub configure depcomp install-sh ltmain.sh m4 missing groonga-tokenizer-yadelimit.pc packages/rpm/centos/groonga-tokenizer-yadelimit.spec packages/rpm/fedora/groonga-tokenizer-yadelimit.spec Makefile config.log config.h libtool stamp-h1 packages/Makefile packages/Makefile.in packages/apt/Makefile packages/apt/Makefile.in packages/rpm/Makefile packages/rpm/Makefile.in  packages/rpm/centos/Makefile packages/rpm/centos/Makefile.in packages/rpm/fedora/Makefile packages/rpm/fedora/Makefile.in packages/source/Makefile packages/source/Makefile.in  packages/yum/Makefile packages/yum/Makefile.in test/Makefile.in test/Makefile tokenizers/Makefile tokenizers/Makefile.in  tokenizers/.deps/ tokenizers/.libs/ config.status
+make clean
+sh clean.sh
 sh autogen.sh
 ./configure && make
 
@@ -69,14 +71,15 @@ mkdir -p ~/build
 
 cd /usr/local/src
 
-cp -rf groonga-tokenizer-yadelirm -rf groonga-tokenizer-yadelimit-1.0.0mit groonga-tokenizer-yadelimit-1.0.0
+rm -rf groonga-tokenizer-yadelimit-1.0.0
+cp -rf groonga-tokenizer-yadelimit groonga-tokenizer-yadelimit-1.0.0
 tar zcvf groonga-tokenizer-yadelimit-1.0.0.tar.gz groonga-tokenizer-yadelimit-1.0.0
 mv groonga-tokenizer-yadelimit-1.0.0.tar.gz ~/build/groonga-tokenizer-yadelimit_1.0.0.orig.tar.gz
 cd ~/build
 tar xfz groonga-tokenizer-yadelimit_1.0.0.orig.tar.gz
 cd groonga-tokenizer-yadelimit-1.0.0/
 cp -rf packages/debian .
-debuild -us -uc
+debuild -us -uc -b
 cd ..
 mv ~/build/groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb /usr/local/src/groonga-tokenizer-yadelimit/public/debian/wheezy/
 ```
@@ -84,6 +87,7 @@ mv ~/build/groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb /usr/local/src/groonga-
 #Debian(jessie)
 
 ```
+docker run -v /usr/local/src:/usr/local/src -i -t naoa/groonga-build-debian-jessie /bin/bash
 docker run -v /usr/local/src:/usr/local/src -i -t debian:jessie /bin/bash
 
 echo "deb http://packages.groonga.org/debian/ jessie main" >> /etc/apt/sources.list.d/groonga.list
@@ -95,6 +99,7 @@ mv ~/build/groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb /usr/local/src/groonga-
 #Ubuntu(precise)
 
 ```
+docker run -v /usr/local/src:/usr/local/src -i -t naoa/groonga-build-ubuntu-precise /bin/bash
 docker run -v /usr/local/src:/usr/local/src -i -t ubuntu:precise /bin/bash
 
 apt-get update
@@ -103,6 +108,8 @@ apt-get update
 add-apt-repository -y universe
 add-apt-repository -y ppa:groonga/ppa
 apt-get update
+apt-get install -y groonga libgroonga-dev wget tar build-essential zlib1g-dev liblzo2-dev libmsgpack-dev libzmq-dev libevent-dev libmecab-dev autoconf automake libtool lsb-release aptitude devscripts
+apt-get install -y dh-make
 …
 mv ~/build/groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb /usr/local/src/groonga-tokenizer-yadelimit/public/ubuntu/precise/
 ```
@@ -110,14 +117,9 @@ mv ~/build/groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb /usr/local/src/groonga-
 #Ubuntu(trusty)
 
 ```
+docker run -v /usr/local/src:/usr/local/src -i -t naoa/groonga-build-ubuntu-trusty /bin/bash
 docker run -v /usr/local/src:/usr/local/src -i -t ubuntu:trusty /bin/bash
 
-apt-get update
-apt-get -y install software-properties-common python-software-properties
-apt-get update
-add-apt-repository -y universe
-add-apt-repository -y ppa:groonga/ppa
-apt-get update
 …
 mv ~/build/groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb /usr/local/src/groonga-tokenizer-yadelimit/public/ubuntu/trusty/
 ```
