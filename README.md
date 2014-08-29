@@ -81,13 +81,13 @@ Install ``groonga-tokenizer-yadelimit`` package:
 * CentOS6
 
 ```
-% sudo yum localinstall -y http://github.com/naoa/groonga-tokenizer-yadelimit/public/centos/6/groonga-tokenizer-yadelimit-1.0.0-1.el6.x86_64.rpm
+% sudo yum localinstall -y http://packages.createfield.com/centos/6/groonga-tokenizer-yadelimit-1.0.0-1.el6.x86_64.rpm
 ```
 
 * CentOS7
 
 ```
-% sudo yum localinstall -y http://github.com/naoa/groonga-tokenizer-yadelimit/public/centos/7/groonga-tokenizer-yadelimit-1.0.0-1.el7.x86_64.rpm
+% sudo yum localinstall -y http://packages.createfield.com/centos/7/groonga-tokenizer-yadelimit-1.0.0-1.el7.centos.x86_64.rpm
 ```
 
 ### Fedora
@@ -95,7 +95,7 @@ Install ``groonga-tokenizer-yadelimit`` package:
 * Fedora 20
 
 ```
-% sudo yum localinstall -y http://github.com/naoa/groonga-tokenizer-yadelimit/public/fedora/20/groonga-tokenizer-yadelimit-1.0.0-1.fc20.x86_64.rpm
+% sudo yum localinstall -y http://packages.createfield.com/fedora/20/groonga-tokenizer-yadelimit-1.0.0-1.fc20.x86_64.rpm
 ```
 
 ### Debian GNU/LINUX
@@ -103,14 +103,14 @@ Install ``groonga-tokenizer-yadelimit`` package:
 * wheezy
 
 ```
-% wget http://github.com/naoa/groonga-tokenizer-yadelimit/public/debian/wheezy/groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb
+% wget http://packages.createfield.com/debian/wheezy/groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb
 % sudo dpkg -i groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb
 ```
 
 * jessie
 
 ```
-% wget http://github.com/naoa/groonga-tokenizer-yadelimit/public/debian/jessie/groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb
+% wget http://packages.createfield.com/debian/jessie/groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb
 % sudo dpkg -i groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb
 ```
 
@@ -120,14 +120,14 @@ Install ``groonga-tokenizer-yadelimit`` package:
 * precise
 
 ```
-% wget http://github.com/naoa/groonga-tokenizer-yadelimit/public/ubuntu/precise/groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb
+% wget http://packages.createfield.com/ubuntu/precise/groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb
 % sudo dpkg -i groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb
 ```
 
 * trusty
 
 ```
-% wget http://github.com/naoa/groonga-tokenizer-yadelimit/public/ubuntu/trusty/groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb
+% wget http://packages.createfield.com/ubuntu/trusty/groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb
 % sudo dpkg -i groonga-tokenizer-yadelimit_1.0.0-1_amd64.deb
 ```
 
