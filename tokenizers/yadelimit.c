@@ -122,7 +122,7 @@ yadelimit_next(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj **args,
         tokenizer->query->encoding);
   } else {
     const unsigned char *token_top = tokenizer->next;
-    const unsigned char *token_cursor;
+    const unsigned char *token_tail;
     const unsigned char *string_end = tokenizer->end;
 
     unsigned int char_length;
@@ -130,38 +130,38 @@ yadelimit_next(grn_ctx *ctx, GNUC_UNUSED int nargs, GNUC_UNUSED grn_obj **args,
 
     grn_tokenizer_status status;
 
-    for (token_cursor = token_top; token_cursor < string_end; token_cursor += char_length) {
-      if (!(char_length = grn_plugin_charlen(ctx, (char *)token_cursor, rest_length,
+    for (token_tail = token_top; token_tail < string_end; token_tail += char_length) {
+      if (!(char_length = grn_plugin_charlen(ctx, (char *)token_tail, rest_length,
                                              tokenizer->query->encoding))) {
         tokenizer->next = (unsigned char *)string_end;
         break;
       }
       if (tokenizer->delimit_punct){
-        if(ispunct(*token_cursor)){
-          tokenizer->next = token_cursor + char_length;
+        if(ispunct(*token_tail)){
+          tokenizer->next = token_tail + char_length;
           break;
         }
       }
       if (tokenizer->delimiter) {
-        if (token_cursor + tokenizer->delimiter_len <= string_end &&
-            !memcmp(token_cursor, tokenizer->delimiter, tokenizer->delimiter_len)) {
-          tokenizer->next = token_cursor + tokenizer->delimiter_len;
+        if (token_tail + tokenizer->delimiter_len <= string_end &&
+            !memcmp(token_tail, tokenizer->delimiter, tokenizer->delimiter_len)) {
+          tokenizer->next = token_tail + tokenizer->delimiter_len;
           break;
         }
       }
     }
-    if (token_cursor == string_end) {
+    if (token_tail == string_end) {
       status = GRN_TOKENIZER_LAST;
     } else {
       status = GRN_TOKENIZER_CONTINUE;
     }
 
-    if (token_cursor == token_top) {
+    if (token_tail == token_top) {
       status |= GRN_TOKENIZER_TOKEN_SKIP_WITH_POSITION;
     }
 
     grn_tokenizer_token_push(ctx, &(tokenizer->token),
-                             (const char *)token_top, token_cursor - token_top, status);
+                             (const char *)token_top, token_tail - token_top, status);
   }
 
   return NULL;
