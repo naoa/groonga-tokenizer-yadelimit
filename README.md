@@ -164,6 +164,8 @@ Groonga:
 Mroonga:
 
     mysql> use db;
+    mysql> CREATE TABLE `temp` (id INT NOT NULL) ENGINE=mroonga DEFAULT CHARSET=utf8;
+    mysql> DROP TABLE `temp`;
     mysql> select mroonga_command("register tokenizers/yadelimit");
     mysql> CREATE TABLE `Diaries` (
         -> id INT NOT NULL,
