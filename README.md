@@ -98,6 +98,12 @@ Install ``groonga-tokenizer-yadelimit`` package:
 % sudo yum localinstall -y http://packages.createfield.com/fedora/20/groonga-tokenizer-yadelimit-1.0.0-1.fc20.x86_64.rpm
 ```
 
+* Fedora 21
+
+```
+% sudo yum localinstall -y http://packages.createfield.com/fedora/21/groonga-tokenizer-yadelimit-1.0.0-1.fc21.x86_64.rpm
+```
+
 ### Debian GNU/LINUX
 
 * wheezy
