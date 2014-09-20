@@ -2,7 +2,7 @@
 
 ## Tokenizer
 
-### TokenYaDelimitCaret
+### ``TokenYaDelimitCaret``
 
 It tokenize by splliting with a caret ``^``.
 
@@ -15,7 +15,7 @@ It tokenize by splliting with a caret ``^``.
 ]]
 ```
 
-### TokenYaDelimitColon
+### ``TokenYaDelimitColon``
 
 It tokenize by splliting with a colon ``:``.
 
@@ -28,7 +28,7 @@ It tokenize by splliting with a colon ``:``.
 ]]
 ```
 
-### TokenYaDelimitSemicolon
+### ``TokenYaDelimitSemicolon``
 
 It tokenize by splliting with a semicolon ``;``.
 
@@ -41,7 +41,7 @@ It tokenize by splliting with a semicolon ``;``.
 ]]
 ```
 
-### TokenYaDelimitPunct
+### ``TokenYaDelimitPunct``
 
 It tokenize by splliting with punctuations ``!"#$%&'()*+,-./:;<=>?@[\]^_`{|}``.
 
@@ -54,7 +54,7 @@ It tokenize by splliting with punctuations ``!"#$%&'()*+,-./:;<=>?@[\]^_`{|}``.
 ]]
 ```
 
-### TokenYaDelimitPunctWithBlank
+### ``TokenYaDelimitPunctWithBlank``
 
 It tokenize by splliting with punctuations and blank ``!"#$%&'()*+,-./:;<=>?@[\]^_`{|}  ``.
 
@@ -185,7 +185,7 @@ Rroonga:
     irb --simple-prompt -rubygems -rgroonga
     >> Groonga::Context.default_options = {:encoding => :utf8}   
     >> Groonga::Database.create(:path => "/tmp/db")
-    >> Groonga::Plugin.register(:path => "/usr/lib/groonga/plugins/tokenizers/yadelimit.so")
+    >> Groonga::Plugin.register(:path => "tokenizers/yadelimit.so")
     >> Groonga::Schema.create_table("Diaries",
     ?>                              :type => :hash,
     ?>                              :key_type => :integer32) do |table|
