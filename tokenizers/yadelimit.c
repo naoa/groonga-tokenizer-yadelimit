@@ -48,6 +48,8 @@
 #  define GNUC_UNUSED
 #endif
 
+#define GRN_STRING_ENABLE_NORMALIZER_FILTER (0x01<<5)
+
 typedef struct {
   grn_tokenizer_token token;
   grn_tokenizer_query *query;
@@ -66,7 +68,7 @@ yadelimit_init(grn_ctx *ctx, int nargs, grn_obj **args, grn_user_data *user_data
                grn_bool delimit_punct)
 {
   grn_tokenizer_query *query;
-  unsigned int normalize_flags = 0;
+  unsigned int normalize_flags = GRN_STRING_ENABLE_NORMALIZER_FILTER;
   const char *normalized;
   unsigned int normalized_length_in_bytes;
   grn_yadelimit_tokenizer *tokenizer;
